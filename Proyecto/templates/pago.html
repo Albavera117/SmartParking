@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% block content %}
+   
+         <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <img class="first-slide" src="{{ url_for('static', filename= 'img/parking.jpg')}}" alt="First slide">
+                  <div class="container">
+                     <div class="carousel-caption relative" >
+                     	 <table class="table table-bordered table-dark" width="100%" border="1" cellspacing="0" cellpadding="6">
+							  <thead>
+							    <tr>
+							      <th colspan="2">Datos del boleto</th>
+							    
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <th scope="row">Id del boleto</th>
+							      <td>{{var6}}</td>
+							      
+							     
+							    </tr>
+							    <tr>
+							      <th scope="row" width="200">Fecha de entrada</th>
+							      <td>{{var2}}</td>
+							      
+							      
+							    </tr>
+							    <tr>
+							      <th scope="row">Hora de entrada</th>
+							      <td>{{var1}}</td>
+
+							    </tr>
+							     </tr>
+							    <tr>
+							      <th scope="row">Fecha de salida</th>
+							      <td>{{var5}}</td>
+
+							    </tr>
+							     </tr>
+							    <tr>
+							      <th scope="row">Hora de salida</th>
+							      <td>{{var4}}</td>
+
+							    </tr>
+							    <tr>
+							      <th scope="row">Tipo de pensión</th>
+							      <td>{{var7}}</td>
+
+							    </tr>
+							     
+
+							    <tr>
+							      <th scope="row">Total a pagar</th>
+							      <td>{{var8}}</td>
+							    </tr>
+
+							    </tr>
+							  </tbody>
+							</table>
+							<li> <a href="/">Pagar</a> </li>
+							            
+
+							            
+							                        
+							                        
+					</div>
+				 </div>
+			</div>
+
+{% endblock %}

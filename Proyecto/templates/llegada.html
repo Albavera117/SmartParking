@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="border: 2px solid #023023; padding: 10px; background-color: #023023;"></h1>
+
+      <div id="testimonial" class="testimonial">
+
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h3>Registro del Auto</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div id="testimonial_slider" class="carousel slide banner-bg" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img class="first-slide" src="{{ url_for('static', filename= 'img/entrada.jpg')}}">
+                           <div class="container">
+                              <div class="carousel-caption relat">
+                                 <h3>Parking MX</h3>
+                                 <span><i class="fa fa-quote-left"></i> ( Siempre seguros )<i class="fa fa-quote-right"></i></span>
+                                 <p>Somos Profesionales en la Operación de Estacionamientos Públicos y Privados, Terrenos, Plazas Comerciales, Edificios Corporativos y más.Surge con el objeto de satisfacer las necesidades en la administración y operación através de procedimientos sencillos y estandarizados, brindando calidad rapidez y atención en el servicio. <br> <br><br> <br> <br> <br><br> <br></p>
+
+                              </div>
+                           </div>
+                        </div>
+                        
+                     </div>
+                    
+                  </div>
+               </div>
+               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div class="contact">
+                     <h3>Datos</h3>
+                     <form action="/datosentrada" method="POST">
+                        <div class="row">
+                           
+                           <div class="col-sm-12">
+                              <input class="contactus" placeholder="Placas" type="text" name="placas">
+                           </div>
+                            <div class="col-sm-12">
+                              <input class="contactus" placeholder="Modelo" type="text" name="modelo">
+                           </div>
+                            <div class="col-sm-12">
+                              <input class="contactus" placeholder="Color" type="text" name="color">
+                           </div>
+                           <div class="col-sm-12">
+                              <input class="contactus" placeholder="Fecha con el siguiente formato: AAAA-MM-DD" type="text" name="fecha">
+                           </div>
+                            <div class="col-sm-12">
+                              <input class="contactus" placeholder="Hora con el siguiente formato 24hrs: HH:MM:SS" type="text" name="hora">
+                           </div>
+                           <div class="col-sm-12"> 
+
+                              <label for="validationCustom04" class="form-label" class="display-5" class="form-select">Tipo de pensión</label>
+                           <select class="btn btn-secondary dropdown-toggle" name="pension" required >
+                           
+                           <option selected disabled value=""  >Elige una opción...</option>
+                              <option>Día</option>
+                              <option>Semana</option>
+                              <option>Mes</option>
+                              <option>Ninguna</option>
+                           </div>
+
+                           <br>
+                           </select>
+                           </div>
+                           
+                           <div class="col-sm-12">
+                              <br>  
+                              <button class="send">Enviar</button>
+                           </div>
+                        </div>
+                        
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+{% endblock %}
