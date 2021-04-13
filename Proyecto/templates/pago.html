@@ -1,71 +1,70 @@
 {% extends 'base/base.html' %}
 {% block content %}
-   
-         <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <img class="first-slide" src="{{ url_for('static', filename= 'img/parking.jpg')}}" alt="First slide">
-                  <div class="container">
-                     <div class="carousel-caption relative" >
-                     	 <table class="table table-bordered table-dark" width="100%" border="1" cellspacing="0" cellpadding="6">
-							  <thead>
-							    <tr>
-							      <th colspan="2">Datos del boleto</th>
-							    
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <th scope="row">Id del boleto</th>
-							      <td>{{var6}}</td>
-							      
-							     
-							    </tr>
-							    <tr>
-							      <th scope="row" width="200">Fecha de entrada</th>
-							      <td>{{var2}}</td>
-							      
-							      
-							    </tr>
-							    <tr>
-							      <th scope="row">Hora de entrada</th>
-							      <td>{{var1}}</td>
+  
+					                        
+<h1 style="border: 2px solid #023023; padding: 10px; background-color: #023023;"></h1>
 
-							    </tr>
-							     </tr>
-							    <tr>
-							      <th scope="row">Fecha de salida</th>
-							      <td>{{var5}}</td>
+      <div id="testimonial" class="testimonial">
 
-							    </tr>
-							     </tr>
-							    <tr>
-							      <th scope="row">Hora de salida</th>
-							      <td>{{var4}}</td>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                    
+                        
+                     </div>
+                    
+                  </div>
+               </div>
+               <table class="table table-bordered table-dark" >
 
-							    </tr>
-							    <tr>
-							      <th scope="row">Tipo de pensión</th>
-							      <td>{{var7}}</td>
 
-							    </tr>
-							     
 
-							    <tr>
-							      <th scope="row">Total a pagar</th>
-							      <td>{{var8}}</td>
-							    </tr>
+					  <tr>
 
-							    </tr>
-							  </tbody>
-							</table>
-							<li> <a href="/">Pagar</a> </li>
-							            
+					    <td >Fecha y hora de entrada</td>
+
+					    <td>{{var2}}  /  {{var1}}</td>
+
+					  </tr>
+					 
+
+					    <td>Fecha y hora de salida </td>
+
+					    <td>{{var5}}  /  {{var4}}</td>
+
+					  </tr>
+
+					    <td>Tipo de pensión</td>
+
+					    <td>{{var7}}</td>
+
+					  </tr>
+					  <td>Total a pagar</td>
+
+					    <td>{{var8}} </td>
+
+					  </tr>
+
+
+
+
+					</table>
+					<center>
+					<li> <a href="/" class="tn btn-success btn-lg active">Pagar</a> </li></center>
+                     
+                           
+                          <br>   <br> <br>  <br> <br> <br> <br>
+                        
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
 
 							            
 							                        
 							                        
-					</div>
-				 </div>
-			</div>
-
+					
 {% endblock %}

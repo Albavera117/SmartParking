@@ -1,7 +1,7 @@
-#:vv
 from flask import Flask
 from flask import request, redirect, url_for, flash,session
 from flask import render_template
+from flask import url_for,session
 from flask_mysqldb import MySQL
 import datetime
 from calculo_precio import calculo_de_importe 
@@ -9,9 +9,9 @@ from calculo_precio import calculo_de_importe
 app= Flask(__name__)
 
 #conexión mysql
-app.config['MYSQL_HOST'] = 'parkingmx.cykvjrrm8iey.us-east-1.rds.amazonaws.com'
-app.config['MYSQL_USER'] = 'luis'
-app.config['MYSQL_PASSWORD'] = 'luis12345'
+app.config['MYSQL_HOST'] = 'parkingmxtestdb.cxr3tycpskvz.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'Albavera'
+app.config['MYSQL_PASSWORD'] = 'alba12345'
 app.config['MYSQL_DB'] = 'parkingmx'
 mysql= MySQL(app)
 
@@ -20,6 +20,39 @@ app.secret_key ='mysecretkey'
 @app.route('/')
 def index (): 
 	return render_template ('index.html')
+
+@app.route('/acceso/')
+@app.route('/acceso/<u>/<uDB>/')
+def acceso (u=" ", uDB= "1"):
+	return render_template ('acceso.html',u=u, uDB=uDB)
+
+@app.route('/validaracceso', methods =['POST'])
+def validaracceso():
+	if request.method == 'POST':
+
+		#obtener datos ingresados en el LOGIN
+		usuario = str(request.form['usuario'])
+		contraseña = str(request.form['contraseña'])
+
+		#obtener datos de BD Usuarios
+		cur = mysql.connection.cursor()
+		cur.execute('SELECT * FROM usuarios')
+		datos = cur.fetchall()
+		
+		#validación inicio de sesión
+		for dato in datos:
+			usuarioBD = str(dato[1])
+			contraseñaBD = str(dato[2])
+			print(usuarioBD)
+			print(contraseñaBD)
+			if usuarioBD == usuario and contraseñaBD == contraseña:# si es exitoso
+				flash("Bienvenido {}".format(usuarioBD))
+				return redirect(url_for('acceso',u=usuario, uDB=usuarioBD))
+		
+		#si fracasa
+		flash("Usuario o contraseña invalido")
+		return redirect(url_for('acceso'))
+
 
 @app.route('/llegada')
 def llegada (): 
