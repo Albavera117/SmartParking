@@ -21,10 +21,16 @@ def calculo_de_importe(hE, fE, hS, fS, pension, t_tolerancia):
             mes = mes + 1
         dias_totales =  int(fSalida[-1]) + (cont_mes - (int(fEntrada[-1])-1))
     elif mes == int(fSalida[-2]):
-        if int(fSalida[-1]) == int(fEntrada[-1]) or ((int(fEntrada[-1]))+1) == int(fSalida[-1]):
-            dias_totales = 0
+        if pension_actual == 1:
+            if int(fSalida[-1]) == int(fEntrada[-1]) or ((int(fEntrada[-1]))+1) == int(fSalida[-1]):
+                dias_totales = 0
+            else:
+                dias_totales = (int(fSalida[-1]) - (int(fEntrada[-1])))
         else:
-            dias_totales = (int(fSalida[-1]) - (int(fEntrada[-1])))
+            if int(fSalida[-1]) == int(fEntrada[-1]):
+                dias_totales = 0
+            else:
+                dias_totales = (int(fSalida[-1]) - (int(fEntrada[-1])))
     print("Dias totales:",dias_totales)
     #Calculo de horas
     if fEntrada[-2] != fSalida[-2]:
@@ -55,8 +61,8 @@ def calculo_de_importe(hE, fE, hS, fS, pension, t_tolerancia):
         importe_final = int(calculo_tiempo_total * 1000)
     #pension de mes
     elif pension_actual == 4:
-        calculo_tiempo_total = dias_totales/30
+        calculo_tiempo_total = round(dias_totales/30)
         importe_final = calculo_tiempo_total * 4000
-        importe_final = round(importe_final, 0)
+        importe_final = importe_final, 0
     #return print("Días totales:",dias_totales,", código de pensión:",pension_actual,", minutos totales:", minutos_totales, ", importe final: ${} MXN " .format(importe_final))
     return importe_final
