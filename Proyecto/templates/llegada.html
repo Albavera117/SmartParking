@@ -23,7 +23,7 @@
                               <div class="carousel-caption relat">
                                  <h3>Smart parking</h3>
                                  <span><i class="fa fa-quote-left"></i> ( Siempre seguros )<i class="fa fa-quote-right"></i></span>
-                                 <p>Somos Profesionales en la Operación de Estacionamientos Públicos y Privados, Terrenos, Plazas Comerciales, Edificios Corporativos y más.Surge con el objeto de satisfacer las necesidades en la administración y operación através de procedimientos sencillos y estandarizados, brindando calidad rapidez y atención en el servicio. <br> <br><br> <br> <br> <br><br> <br></p>
+                                 <p> <font size="5">Somos Profesionales en la Operación de Estacionamientos Públicos y Privados, Terrenos, Plazas Comerciales, Edificios Corporativos y más.Surge con el objeto de satisfacer las necesidades en la administración y operación através de procedimientos sencillos y estandarizados, brindando calidad rapidez y atención en el servicio. <br> <br><br></font></p>
 
                               </div>
                            </div>
@@ -40,19 +40,22 @@
                         <div class="row">
                            
                            <div class="col-sm-12">
-                              <input class="contactus" placeholder="Placas" type="text" name="placas">
+                              <input class="contactus" placeholder="Placas" type="text" name="placas" required="">
                            </div>
                             <div class="col-sm-12">
-                              <input class="contactus" placeholder="Modelo" type="text" name="modelo">
+                              <input class="contactus" placeholder="Modelo" type="text" name="modelo" required="">
                            </div>
                             <div class="col-sm-12">
-                              <input class="contactus" placeholder="Color" type="text" name="color">
+                              <input class="contactus" placeholder="Color" type="text" name="color" required="">
                            </div>
                            <div class="col-sm-12">
-                              <input class="contactus" placeholder="Fecha AAAA-MM-DD" type="text" name="fecha">
+                              <input class="contactus" type="date" id="send" min="2021-03-15" max="2021-10-20" oninput="result.value = send.value" required="">
+      <input class="contactus"  type="hidden" id="result" name="fecha" required=""  minlength="10" maxlength="10" placeholder="AAAA-MM-DD" pattern="(?:19|20)(?:(?:[13579][26]|[02468][048])-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))|(?:[0-9]{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:29|30))|(?:(?:0[13578]|1[02])-31)))">
+
                            </div>
                             <div class="col-sm-12">
-                              <input class="contactus" placeholder="Hora(24hrs) HH:MM:SS" type="text" name="hora">
+                           
+                              <input class="contactus" type="time" name="hora"  step="1" required="">
                            </div>
                            <div class="col-sm-12"> 
 

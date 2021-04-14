@@ -63,6 +63,5 @@ def calculo_de_importe(hE, fE, hS, fS, pension, t_tolerancia):
     elif pension_actual == 4:
         calculo_tiempo_total = round(dias_totales/30)
         importe_final = calculo_tiempo_total * 4000
-        importe_final = importe_final, 0
     #return print("Días totales:",dias_totales,", código de pensión:",pension_actual,", minutos totales:", minutos_totales, ", importe final: ${} MXN " .format(importe_final))
     return importe_final
