@@ -168,6 +168,9 @@
     .testimonial .contact .send {
         padding: 7px 50px;
     }
+    .testimonial .contact .cancel {
+        padding: 7px 50px;
+    }
     .footer .address h3 {
         font-size: 20px;
     }
@@ -236,6 +239,9 @@
         padding: 11px 19px;
     }
     .testimonial .contact .send {
+        padding: 7px 50px;
+    }
+    .testimonial .contact .cancel {
         padding: 7px 50px;
     }
     ul.socil_link li {

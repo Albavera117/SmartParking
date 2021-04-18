@@ -1,26 +1,13 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base_formularios.html' %}
 
 {% block content %}
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-      <div class="alert alert-primary alert-dismissible fade show" role="alert">  
-      {{message}}
-      <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-         <span aria-hidden="true">&times;<span>
-      </button>
-      </div>
-{% endfor %}
-{% endif %}
-{% endwith %}
 <h1 style="border: 2px solid #023023; padding: 10px; background-color: #023023;"></h1>
       <div id="testimonial" class="testimonial">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h3>Registro del Estacionamiento</h3>
+                     <h3>Editar</h3>
                   </div>
                </div>
             </div>
@@ -47,30 +34,38 @@
                </div>
                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div class="contact">
-                     <h3>Datos</h3>
-                     <form action="/datosestacionamiento" method="POST">
+                     <h3>Actualizar Estacionamiento</h3>
+                     <form action="/actualizar_estacionamiento/{{id}}/{{u}}/" method="POST">
                         <div class="row">
+                           <h4 class="container">Nombre Estacionamiento</h4>
+                           <div class="col-sm-12 col-xl-12 col-lg-6 col-md-6">
+                              <input class="contactus" type="text" name="nombre" required="" value="{{datos.1}}">
+                           </div>
+                           <h4 class="container">Codigo Postal</h4>
+                            <div class="col-sm-12 col-xl-12 col-lg-6 col-md-6">
+                              <input class="contactus"  type="text" name="cp" required="" value="{{datos.2}}">
+                           </div>
+                           <h4 class="container">Telefono</h4>
+                            <div class="col-sm-12 col-xl-12 col-lg-6 col-md-6">
+                              <input class="contactus"  type="text" name="telefono" required=""value="{{datos.3}}">
+                           </div>
+                           <h4 class="container">Capacidad de Autos</h4>
+                           <div class="col-sm-12 col-xl-12 col-lg-6 col-md-6">
+                              <input class="contactus"  type="text" name="capacidad" required="" value="{{datos.4}}">
+                           </div>
+                           <h4 class="container">Tolerancia de Tiempo</h4>
+                           <div class="col-sm-12 col-xl-12 col-lg-6 col-md-6">
+                              <input class="contactus"  type="text" name="tolerancia" required="" value="{{datos.5}}">
+                           </div>
                            
-                           <div class="col-sm-12">
-                              <input class="contactus" placeholder="Nombre del estacionamiento" type="text" name="nombre" required="">
-                           </div>
-                            <div class="col-sm-12">
-                              <input class="contactus" placeholder="C.P" type="text" name="cp" required="">
-                           </div>
-                            <div class="col-sm-12">
-                              <input class="contactus" placeholder="Teléfono" type="text" name="telefono" required="">
-                           </div>
-                           <div class="col-sm-12">
-                              <input class="contactus" placeholder="Capacidad de autos" type="text" name="capacidad" required="">
-                           </div>
-                           <div class="col-sm-12">
-                              <input class="contactus" placeholder="Tiempo de tolerancia en minutos" type="text" name="tolerancia" required="">
-                           </div>
                            
-                           
-                           <div class="col-sm-12">
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                               <button class="send">Enviar</button>
                            </div>
+                           <br> <br> <br>
+                            <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
+                            <center><button style="background-color: white;"><a class="send" href="/registro_usuario/{{u}}/">Cancelar</a></button></center>
+                          </div>
                         </div>
                      </form>
                   </div>

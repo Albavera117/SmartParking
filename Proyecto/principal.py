@@ -21,12 +21,11 @@ app.secret_key ='mysecretkey'
 def index (): 
 	return render_template ('index.html')
 
-@app.route('/acceso/')
-@app.route('/acceso/<u>/<uDB>/')
-def acceso (u=" ", uDB= "1"):
-	return render_template ('acceso.html',u=u, uDB=uDB)
+@app.route('/acceso')
+def acceso ():
+	return render_template ('acceso.html')
 
-@app.route('/validaracceso', methods =['POST'])
+@app.route('/validar_acceso', methods =['POST'])
 def validaracceso():
 	if request.method == 'POST':
 
@@ -43,11 +42,9 @@ def validaracceso():
 		for dato in datos:
 			usuarioBD = str(dato[1])
 			contraseñaBD = str(dato[2])
-			print(usuarioBD)
-			print(contraseñaBD)
 			if usuarioBD == usuario and contraseñaBD == contraseña:# si es exitoso
 				flash("Bienvenido {}".format(usuarioBD))
-				return redirect(url_for('acceso',u=usuario, uDB=usuarioBD))
+				return redirect(url_for('inicio_usuarios', u = usuario))
 		
 		#si fracasa
 		flash("Usuario o contraseña invalido")
@@ -173,7 +170,131 @@ def pago ():
 
 	return render_template ('pago.html',var1 =var1,var2 =var2,var3 =var3,var4 =var4,var5 =var5,var6 =var6,var7 =var7,var8 =var8)
 
-	
+@app.route('/inicio_usuario/<u>/')
+def inicio_usuarios(u = " "):
+	return render_template('inicio_usuario.html', u = u)
+
+@app.route('/registro_usuario/<u>/')
+def registro_usuario(u = " "):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM usuarios')
+	datos = cur.fetchall()
+	return render_template('registro_usuario.html', u = u, usuarios = datos)
+
+@app.route('/editar_usuario/<string:id>/<u>/')
+def editar_usuario(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM usuarios WHERE id = {0}'.format(id))
+	datos = cur.fetchall()
+	return render_template('editar_usuario.html', id = id, u = u ,datos = datos)
+
+
+@app.route('/borrar_usuario/<string:id>/<u>/')
+def borrar_usuario(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('DELETE FROM usuarios WHERE id = {0}'.format(id))
+	mysql.connection.commit()
+	flash('Usuario Eliminado Correctamente')
+	return redirect(url_for('registro_usuario', u = u))
+
+@app.route('/actualizar_usuario/<string:id>/<u>/', methods =['POST'])
+def actualizar_usuario(id,u):
+	if request.method == 'POST':
+		usuario = str(request.form['usuario'])
+		contraseña = str(request.form['contraseña'])
+		cur = mysql.connection.cursor()
+		cur.execute('UPDATE usuarios SET usuario = %s, contraseña = %s WHERE id = %s',[usuario, contraseña, id])
+		mysql.connection.commit()
+		flash('Datos Actualizados Correctamente')
+		return redirect(url_for('registro_usuario', u = u))
+
+@app.route('/estacionamientos/<u>/')
+def estacionamientos(u):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM estacionamiento')
+	datos = cur.fetchall()
+	return render_template('estacionamientos.html', u = u, estacionamientos = datos)
+
+@app.route('/borrar_estacionamiento/<string:id>/<u>/')
+def borrar_estacionamiento(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('DELETE FROM estacionamiento WHERE id = {0}'.format(id))
+	mysql.connection.commit()
+	flash('Estacionamiento Borrado Correctamente')
+	return redirect(url_for('estacionamientos', u = u))
+
+@app.route('/editar_estacionamiento/<string:id>/<u>/')
+def editar_estacionamiento(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM estacionamiento WHERE id = {0}'.format(id))
+	datos = cur.fetchall()
+	return render_template('editar_estacionamiento.html', id = id, u = u ,datos = datos[0])
+
+@app.route('/actualizar_estacionamiento/<id>/<u>/', methods =['POST'])
+def actualizar_estacionamiento(id,u):
+	if request.method == 'POST':
+		nombre = request.form['nombre']
+		cp = request.form['telefono']
+		capacidad = request.form['capacidad']
+		tolerancia = request.form['tolerancia']
+		cur = mysql.connection.cursor()
+		cur.execute('UPDATE estacionamiento SET nombre = %s, cp = %s, capacidad = %s, tolerancia = %s WHERE id = %s',[nombre, cp, capacidad, tolerancia, id])
+		mysql.connection.commit()
+		flash('Datos Actualizados Correctamente')
+		return redirect(url_for('estacionamientos', u = u))
+
+@app.route('/autos/<u>/')
+def autos(u):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT entrada.id, entrada.placas, entrada.modelo, entrada.color, entrada.fecha, entrada.hora, entrada.pension, salida.fecha, salida.hora, salida.importe FROM entrada INNER JOIN salida ON entrada.id=salida.id;')
+	datos = cur.fetchall()
+	return render_template('autos.html', u = u, datos = datos)
+
+@app.route('/editar_auto/<id>/<u>/')
+def editar_auto(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM entrada WHERE id = %s',[id])
+	entrada = cur.fetchall()
+	entrada = entrada[0]
+	entrada = list(entrada)
+
+	cur = mysql.connection.cursor()
+	cur.execute('SELECT * FROM salida WHERE id = %s',[id])
+	salida = cur.fetchall()
+	salida = salida[0]
+	salida = list(salida)
+
+	datos = list()
+	datos.extend(entrada)
+	datos.extend(salida)
+	return render_template('editar_auto.html', id = id, u = u, datos = datos )
+
+@app.route('/actualizar_auto/<id>/<u>/', methods =['POST'])
+def actualizar_auto(id,u):
+	if request.method == 'POST':
+		placas = request.form['placas']
+		modelo = request.form['modelo']
+		color = request.form['color']
+		fecha_entrada = request.form['fecha_entrada']
+		hora_entrada = request.form['hora_entrada']
+		pension = request.form['pension']
+
+		fecha_salida = request.form['fecha_salida']
+		hora_salida = request.form['hora_salida']
+		importe = request.form['importe']
+
+		print(fecha_entrada)
+		print(fecha_salida)
+
+		cur = mysql.connection.cursor()
+		cur.execute('UPDATE entrada SET placas = %s, modelo = %s, color = %s, fecha = %s, hora = %s, pension = %s WHERE id = %s',[placas, modelo, color, fecha_entrada, hora_entrada, pension, id])
+		mysql.connection.commit()
+
+		cur = mysql.connection.cursor()
+		cur.execute('UPDATE salida SET fecha = %s, hora = %s, importe = %s WHERE id = %s',[fecha_salida, hora_salida, importe,id])
+		mysql.connection.commit()
+		flash('Datos Actualizados Correctamente')
+		return redirect(url_for('autos', u = u))
 
 if __name__ == '__main__':
-	app.run(debug = True, port = 8000)
+	app.run(debug = True, port = 8000, host = '0.0.0.0')

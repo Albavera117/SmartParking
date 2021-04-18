@@ -28,16 +28,6 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-       <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="{{ url_for('static', filename= 'img/loading.gif')}}" alt="#" /></div>
-      </div>
-      <!-- end loader --> 
-      
-      <!-- header -->
       <header>
          <!-- header inner -->
          <div class="header">
@@ -46,21 +36,15 @@
                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                   <div class="full">
                      <div class="center-desk">
-                        <div class="logo"> <a href="/">Smart Parking</a> </div>
                      </div>
                   </div>
                </div>
-               <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+               <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5">
                   <div class="menu-area">
                      <div class="limit-box">
                         <nav class="main-menu">
-                           <ul class="menu-area-main">
-                              <li> <a href="/">Inicio</a> </li>
-                              <li> <a href="/registro">Registro</a> </li>
-                              <li> <a href="/llegada"> Entrada</a> </li>
-                              <li> <a href="/salida">Salida</a> </li>
-                              <li> <a href="/acceso">Iniciar Sesión</a> </li>
-                              
+                           <ul class="center-desk">
+                            <div class="logo"> <a href="/inicio_usuario/{{u}}/">Smart Parking</a> </div>                           
                            </ul>
                            <ul></ul>
                         </nav>
@@ -71,6 +55,7 @@
          </div>
          <!-- end header inner --> 
       </header>
+      <!-- end header -->
       <!-- end header -->
     
       
@@ -85,27 +70,11 @@
       <script src="{{ url_for('static', filename= 'js/jquery.mCustomScrollbar.concat.min.js')}}"></script> 
       <script src="{{ url_for('static', filename= 'js/custom.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script>
-         $(document).ready(function(){
-         $(".fancybox").fancybox({
-         openEffect: "none",
-         closeEffect: "none"
-         });
-         
-         $(".zoom").hover(function(){
-         
-         $(this).addClass('transition');
-         }, function(){
-         
-         $(this).removeClass('transition');
-         });
-         });
-         
-      </script> 
 
       {% block content %}
 
       {% endblock %}
+      
          <footr>
          <div class="footer">
             <div class="container">

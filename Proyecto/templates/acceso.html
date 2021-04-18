@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+<h1 style="border: 2px solid #023023; padding: 10px; background-color: #023023;"></h1>
+
+      <div id="testimonial" class="testimonial">
+
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h3>Login</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div id="testimonial_slider" class="carousel slide banner-bg" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img class="first-slide" src="{{ url_for('static', filename= 'img/entrada.jpg')}}">
+                           <div class="container">
+                              <div class="carousel-caption relat">
+                                 <h3>Parking MX</h3>
+                                 <span><i class="fa fa-quote-left"></i> ( Siempre seguros )<i class="fa fa-quote-right"></i></span>
+                                 <p>Surge con el objeto de satisfacer las necesidades en la administración y operación através de procedimientos sencillos y estandarizados, brindando calidad rapidez y atención en el servicio  </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div class="contact">
+                     <h3>Login</h3>
+                     <form action="/validar_acceso" method="POST">
+                        <div class="row">
+                            <div class="col-sm-12">
+                              <input class="contactus" placeholder="Usuario" type="text" name="usuario">
+                           </div>
+                            <div class="col-sm-12">
+                              <input class="contactus" placeholder="Contraseña" type="password" name="contraseña">
+                           </div>
+                           <div class="col-sm-12">
+                              <button class="send">Enviar</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+{% endblock %}

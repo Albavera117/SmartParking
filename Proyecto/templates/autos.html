@@ -1,0 +1,72 @@
+{% extends 'base/base_usuarios.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">  
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+      <span aria-hidden="true">&times;<span>
+      </button>
+      </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<h1 style="border: 2px solid #023023; padding: 10px; background-color: #023023;"></h1>
+      <div id="testimonial" class="testimonial">
+         <div class="container">
+            <div class="row">
+               <div>
+                  <div class="titlepage">    
+                     </div>
+                  </div>
+               </div>
+               <div>
+               <table class="table table-bordered table-dark table-responsive-sm">
+                 <tr>
+                   <th>ID</th>
+                   <th>Placas</th>
+                   <th>Modelo</th>
+                   <th>Color</th>
+                   <th>Fecha Entrada</th>
+                   <th>Hora Entrada</th>
+                   <th>Pensión</th>
+                   <th>Fecha Salida</th>
+                   <th>Hora Salida</th>
+                   <th>Importe</th>
+                   <th>Acción</th>
+                   <th>Acción</th>
+                 </tr>
+                   {% for dato in datos %}
+               <tbody>
+                 <tr>
+                   <td>{{ dato.0 }} </td>
+                   <td>{{ dato.1 }} </td>
+                   <td>{{ dato.2 }}</td>
+                   <td>{{ dato.3 }}</td>
+                   <td>{{ dato.4 }}</td>
+                   <td>{{ dato.5 }}</td>
+                   <td>{{ dato.6 }}</td>
+                   <td>{{ dato.7 }}</td>
+                   <td>{{ dato.8 }}</td>
+                   <td>{{ dato.9}}</td>
+                   <td><a class="btn btn-light" href="/editar_auto/{{dato.0}}/{{u}}/">Editar</a></td>
+                   <td><a class="btn btn-light" href="/borrar_auto/{{dato.0}}/{{u}}/">Borrar</a></td>
+                 </tr>
+
+                   {% endfor %}
+
+                  </tbody>
+               </table>
+                          <br>   <br> <br>  <br> <br> <br> <br>
+                        
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+              
+{% endblock %}

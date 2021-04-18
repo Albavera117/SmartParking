@@ -2162,7 +2162,26 @@ img.zoom {
 	flex-wrap: wrap;
 }
 
+.testimonial .contact .cancel {
+	font-size: 16px;
+	border: #000 solid 1px;
+	padding: 10px 50px;
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
 .testimonial .contact .send:hover {
+	background-color: #0fc690;
+	border: #0fc690 solid 1px;
+	color: #fff;
+}
+
+.testimonial .contact .cancel:hover {
 	background-color: #0fc690;
 	border: #0fc690 solid 1px;
 	color: #fff;
@@ -2404,3 +2423,4 @@ ul.contant_icon li img {
 	top: inherit;
 	bottom: 10px;
 }
+
