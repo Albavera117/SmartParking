@@ -4,7 +4,7 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-      <div class="alert alert-primary alert-dismissible fade show" role="alert">  
+      <div class="alert alert-success alert-dismissible fade show" role="alert">  
       {{message}}
       <button type="button" class="close" data-dismiss="alert" arial-label="Close">
       <span aria-hidden="true">&times;<span>
@@ -24,7 +24,7 @@
                   </div>
                </div>
                <div>
-               <table class="table table-bordered table-dark table-responsive-sm">
+               <table class="table table-bordered table-dark table-responsive-sm table-responsive-md">
                  <tr>
                    <th>ID</th>
                    <th>Placas</th>
