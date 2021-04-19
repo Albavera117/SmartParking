@@ -145,14 +145,24 @@ def datosestacionamiento():
 			telefono = request.form['telefono']
 			capacidad = request.form['capacidad']
 			tolerancia = request.form['tolerancia']
-			cur2 = mysql.connection.cursor()
-			cur2.execute('INSERT INTO `parkingmx`.`estacionamiento` (nombre,cp,telefono,capacidad,tolerancia) VALUES( %s,%s,%s,%s,%s)', (nombre,cp,telefono,capacidad,tolerancia))
-			mysql.connection.commit()
-			flash('Te has registrado correctamente')
-			
 
+			cur = mysql.connection.cursor()
+			cur.execute('SELECT nombre FROM estacionamiento')
+			datos = cur.fetchall()
+			estacionamientos = list()
+			for dato in datos:
+				estacionamientos.append(dato[0])
+
+			if nombre in estacionamientos or nombre.upper() in estacionamientos or nombre.lower() in estacionamientos or nombre.capitalize() in estacionamientos:
+				flash('El Nombre del Estacionamiento ya Existe')
+				return redirect(url_for('registro'))
+			else:
+				cur2 = mysql.connection.cursor()
+				cur2.execute('INSERT INTO `parkingmx`.`estacionamiento` (nombre,cp,telefono,capacidad,tolerancia) VALUES( %s,%s,%s,%s,%s)', (nombre,cp,telefono,capacidad,tolerancia))
+				mysql.connection.commit()
+				flash('Te has registrado correctamente')
+				return redirect(url_for('index'))
 		
-		return redirect(url_for('index'))
 
 @app.route('/pago', methods =['GET','POST'])
 def pago (): 
@@ -243,6 +253,7 @@ def actualizar_estacionamiento(id,u):
 		flash('Datos Actualizados Correctamente')
 		return redirect(url_for('estacionamientos', u = u))
 
+
 @app.route('/autos/<u>/')
 def autos(u):
 	cur = mysql.connection.cursor()
@@ -295,6 +306,20 @@ def actualizar_auto(id,u):
 		mysql.connection.commit()
 		flash('Datos Actualizados Correctamente')
 		return redirect(url_for('autos', u = u))
+
+@app.route('/borrar_auto/<id>/<u>/')
+def borrar_auto(id,u):
+	cur = mysql.connection.cursor()
+	cur.execute('DELETE FROM entrada WHERE id = {0}'.format(id))
+	mysql.connection.commit()
+
+	cur = mysql.connection.cursor()
+	cur.execute('DELETE FROM salida WHERE id = {0}'.format(id))
+	mysql.connection.commit()
+	flash('Datos Eliminados Correctamente')
+	return redirect(url_for('autos', u = u))
+
+
 
 if __name__ == '__main__':
 	app.run(debug = True, port = 8000, host = '0.0.0.0')
